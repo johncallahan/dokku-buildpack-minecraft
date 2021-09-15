@@ -1,5 +1,13 @@
+<% require 'resolv' %>
 <% open('ngrok.log') do |f| %>
   <% f.lines.select { |line| line.include?("URL:") }.each do |line| %>
+  <% foo = line.match(/tcp:\/\/(.+:[0-9]+) /)[1] %>
+  <% host = foo.match(/([^\:]+)/)[1] %>
+  <% port = foo.match(/[^\:]:([0-9]+)/)[1] %>
+  <% addr = Resolv::DNS.new(nameserver: '8.8.8.8').getaddress(host) %>
+  Full = <%= addr %>:<%= port %>
+  Host = <%= host %>
+  Port = <%= port %>
     Server available at: <%= line.match(/tcp:\/\/(.+:[0-9]+) /)[1] %>
     <br />
   <% end %>
