@@ -42,7 +42,7 @@ case $limit in
 esac
 
 echo "Starting: minecraft ${mc_port}"
-eval "SCREENDIR=~/.screens screen -L -h 2048 -dmS minecraft java -Xmx1024M -Xms1024M -jar minecraft.jar nogui"
+eval "SCREENDIR=~/.screens screen -L -h 2048 -dmS minecraft java -Xmx768M -Xms768M -jar minecraft.jar nogui"
 main_pid=$!
 
 # Flush the logfile every second, and ensure that the logfile exists
